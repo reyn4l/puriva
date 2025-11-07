@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deteksi Kebusukan Makanan</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts untuk tipografi yang lebih menarik -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tensorflow buat AI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.14.0"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ============ MENU: DETEKSI ============ -->
+        <section class="page active" id="page-detect">
+            <div class="header-section">
+                <h1 class="page-title">🍎 Deteksi Makanan</h1>
+                <p class="page-subtitle">Sistem deteksi kebusukan makanan berbasis AI</p>
+            </div>
+
+            <div class="camera-wrapper">
+                <video id="camera" autoplay playsinline></video>
+                <div class="camera-overlay"></div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-icon">⏳</div>
+                <p id="status" class="status-label">Memuat model...</p>
+            </div>
+
+            <!-- Status Kipas & UV Card -->
+            <div class="device-status-card" id="deviceStatusCard">
+                <div class="device-header">
+                    <div class="device-icon">💨</div>
+                    <div class="device-info">
+                        <div class="device-title">Status Perangkat</div>
+                        <div class="device-subtitle" id="deviceStatus">Mati</div>
+                    </div>
+                </div>
+                <div class="device-timer" id="deviceTimer" style="display: none;">
+                    <div class="timer-label">Sisa waktu:</div>
+                    <div class="timer-value" id="timerValue">00:00</div>
+                </div>
+            </div>
+
+            <div class="controls" id="detectControls">
+                <button id="startScan" class="btn btn-primary">
+                    <span class="btn-icon">▶️</span>
+                    <span>Start Scan</span>
+                </button>
+                <button id="stopScan" class="btn btn-secondary" disabled>
+                    <span class="btn-icon">⏹️</span>
+                    <span>Stop Scan</span>
+                </button>
+
+                <!-- Manual control tetap tersedia, akan dinonaktifkan saat scanning berjalan -->
+                <button id="manualOn" class="btn btn-primary">
+                    <span class="btn-icon">💨</span>
+                    <span>Kipas & UV ON</span>
+                </button>
+                <button id="manualOff" class="btn btn-secondary">
+                    <span class="btn-icon">⏸️</span>
+                    <span>Kipas & UV OFF</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============ MENU: RIWAYAT ============ -->
+        <section class="page" id="page-history">
+            <div class="header-section">
+                <h1 class="page-title">📋 Riwayat Deteksi</h1>
+                <p class="page-subtitle">Catatan hasil deteksi sebelumnya</p>
+            </div>
+            <div class="history-container">
+                <ul id="historyList" class="history-list">
+                    <li class="history-empty">Belum ada riwayat deteksi</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ MENU: MANUAL ============ -->
+        <section class="page" id="page-manual">
+            <div class="header-section">
+                <h1 class="page-title">📁 Manual Review</h1>
+                <p class="page-subtitle">Upload gambar atau video untuk dianalisis</p>
+            </div>
+
+            <div class="upload-section">
+                <label for="fileInput" class="upload-label">
+                    <div class="upload-icon">📤</div>
+                    <div class="upload-text">
+                        <span class="upload-title">Pilih File</span>
+                        <span class="upload-subtitle">Gambar atau Video</span>
+                    </div>
+                </label>
+                <input type="file" id="fileInput" accept="image/*,video/*" class="file-input">
+            </div>
+
+            <div class="status-card">
+                <p id="manualStatus" class="manual-status">Belum ada file yang dipilih.</p>
+            </div>
+
+            <!-- Status Kipas & UV Card untuk Manual Page -->
+            <div class="device-status-card" id="deviceStatusCardManual">
+                <div class="device-header">
+                    <div class="device-icon">💨</div>
+                    <div class="device-info">
+                        <div class="device-title">Status Perangkat</div>
+                        <div class="device-subtitle" id="deviceStatusManual">Mati</div>
+                    </div>
+                </div>
+                <div class="device-timer" id="deviceTimerManual" style="display: none;">
+                    <div class="timer-label">Sisa waktu:</div>
+                    <div class="timer-value" id="timerValueManual">00:00</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="manualFanOn" class="btn btn-primary">
+                    <span class="btn-icon">💨</span>
+                    <span>Kipas & UV ON</span>
+                </button>
+                <button id="manualFanOff" class="btn btn-secondary">
+                    <span class="btn-icon">⏸️</span>
+                    <span>Kipas & UV OFF</span>
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <button class="nav-btn active" onclick="showPage('page-detect')" data-page="page-detect">
+            <span class="nav-icon">📷</span>
+            <span class="nav-text">Deteksi</span>
+        </button>
+        <button class="nav-btn" onclick="showPage('page-history')" data-page="page-history">
+            <span class="nav-icon">📋</span>
+            <span class="nav-text">Riwayat</span>
+        </button>
+        <button class="nav-btn" onclick="showPage('page-manual')" data-page="page-manual">
+            <span class="nav-icon">📁</span>
+            <span class="nav-text">Manual</span>
+        </button>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

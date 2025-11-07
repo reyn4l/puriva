@@ -1,0 +1,492 @@
+/* ============ RESET & BASE STYLES ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    padding-bottom: 80px;
+}
+
+/* ============ CONTAINER ============ */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+/* ============ PAGE SECTIONS ============ */
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ HEADER SECTION ============ */
+.header-section {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+/* ============ CAMERA SECTION ============ */
+.camera-wrapper {
+    position: relative;
+    margin: 20px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    background: #000;
+}
+
+video {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============ STATUS CARD ============ */
+.status-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease;
+}
+
+.status-card:hover {
+    transform: translateY(-2px);
+}
+
+.status-icon {
+    font-size: 32px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.status-label {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.manual-status {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+    font-weight: 400;
+}
+
+/* ============ BUTTONS ============ */
+.controls {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    padding: 16px 28px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+    min-width: 160px;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #16a085 0%, #138d75 100%);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+}
+
+.btn-icon {
+    font-size: 20px;
+}
+
+/* ============ UPLOAD SECTION ============ */
+.upload-section {
+    margin: 25px 0;
+}
+
+.upload-label {
+    display: block;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border: 2px dashed rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.upload-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.upload-icon {
+    font-size: 48px;
+}
+
+.upload-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.upload-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.upload-subtitle {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+}
+
+/* ============ HISTORY SECTION ============ */
+.history-container {
+    margin: 20px 0;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-list li {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 15px;
+    color: #333;
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.history-list li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.history-empty {
+    text-align: center;
+    color: #999 !important;
+    font-style: italic;
+    padding: 40px 20px !important;
+}
+
+/* ============ NAVIGATION BAR ============ */
+nav.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.nav-btn:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.nav-btn.active {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.15);
+}
+
+.nav-icon {
+    font-size: 24px;
+}
+
+.nav-text {
+    font-size: 12px;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .btn {
+        min-width: 140px;
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+
+    .status-card {
+        padding: 16px;
+    }
+
+    .upload-label {
+        padding: 25px;
+    }
+}
+
+/* ============ STATUS COLORS (Dynamic) ============ */
+.status-card.fresh {
+    background: linear-gradient(135deg, rgba(26, 188, 156, 0.15) 0%, rgba(22, 160, 133, 0.15) 100%);
+    border: 2px solid rgba(26, 188, 156, 0.3);
+}
+
+.status-card.fresh .status-label {
+    color: #16a085;
+}
+
+.status-card.spoiled {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, rgba(192, 57, 43, 0.15) 100%);
+    border: 2px solid rgba(231, 76, 60, 0.3);
+}
+
+.status-card.spoiled .status-label {
+    color: #c0392b;
+}
+
+/* ============ DEVICE STATUS CARD ============ */
+.device-status-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.device-status-card.active {
+    background: linear-gradient(135deg, rgba(26, 188, 156, 0.2) 0%, rgba(22, 160, 133, 0.2) 100%);
+    border: 2px solid rgba(26, 188, 156, 0.4);
+    animation: devicePulse 2s infinite;
+}
+
+@keyframes devicePulse {
+    0%, 100% {
+        box-shadow: 0 8px 30px rgba(26, 188, 156, 0.2);
+    }
+    50% {
+        box-shadow: 0 8px 40px rgba(26, 188, 156, 0.4);
+    }
+}
+
+.device-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.device-icon {
+    font-size: 36px;
+    transition: transform 0.3s ease;
+}
+
+.device-status-card.active .device-icon {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.device-info {
+    flex: 1;
+}
+
+.device-title {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.device-subtitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.device-status-card.active .device-subtitle {
+    color: #16a085;
+}
+
+.device-timer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px dashed rgba(102, 126, 234, 0.2);
+    text-align: center;
+}
+
+.timer-label {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.timer-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #667eea;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 2px;
+}
